@@ -1,4 +1,6 @@
 package com.salih.restbucks.domain;
 
-public record Item(Product product, int quantity, Milk milk, Size size, boolean whippedCream) {
+import java.util.List;
+
+public record Item(Product product, int quantity, List<Attribute> attributes) {
 }

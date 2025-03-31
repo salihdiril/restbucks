@@ -1,10 +1,6 @@
 package com.salih.restbucks.domain;
 
-public enum Product {
-	LATTE,
-	CAPPUCCINO,
-	ESPRESSO,
-	TEA,
-	HOT_CHOCOLATE,
-	COOKIE
+import java.util.List;
+
+public record Product(String name, ProductType type, List<Property> properties) {
 }
