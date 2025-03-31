@@ -1,6 +1,7 @@
 package com.salih.restbucks.service;
 
-import java.util.HashMap;
+import java.util.Collection;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,7 @@ import com.salih.restbucks.domain.PropertyKey;
 
 @Service
 public class ProductCatalog {
-	private final Map<MenuItem, Product> productMap = new HashMap<>();
+	private final Map<MenuItem, Product> productMap = new EnumMap<>(MenuItem.class);
 
 	public ProductCatalog() {
 		productMap.put(MenuItem.LATTE, new Product(MenuItem.LATTE.name(), ProductType.DRINK, List.of(PropertyKey.MILK)));
@@ -23,5 +24,17 @@ public class ProductCatalog {
 		productMap.put(MenuItem.HOT_CHOCOLATE,
 				new Product(MenuItem.HOT_CHOCOLATE.name(), ProductType.DRINK, List.of(PropertyKey.MILK, PropertyKey.SIZE, PropertyKey.WHIPPED_CREAM)));
 		productMap.put(MenuItem.COOKIE, new Product(MenuItem.COOKIE.name(), ProductType.FOOD, List.of(PropertyKey.KIND)));
+	}
+
+	public Product findByName(String name) {
+		Product product = productMap.get(MenuItem.valueOf(name));
+		if (product == null) {
+			throw new IllegalArgumentException("Product not found: " + name);
+		}
+		return product;
+	}
+
+	public Collection<Product> allProducts() {
+		return productMap.values();
 	}
 }
