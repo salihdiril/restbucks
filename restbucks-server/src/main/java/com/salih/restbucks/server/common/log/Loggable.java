@@ -8,15 +8,23 @@ public interface Loggable {
 		return LogManager.getLogger(this.getClass().getName());
 	}
 
-	default void logEnter(String methodName, Object... args) {
+	default void logEnter() {
 		if (logger().isTraceEnabled()) {
-			logger().trace("➡️ Entering: {} with args {}", methodName, args);
+			logger().trace("➡️ Entering: {}.{}", getClass().getSimpleName(), getCallerMethodName());
 		}
 	}
 
-	default void logExit(String methodName) {
+	default void logExit() {
 		if (logger().isTraceEnabled()) {
-			logger().trace("⬅️ Exiting: {}", methodName);
+			logger().trace("⬅️ Exiting: {}.{}", getClass().getSimpleName(), getCallerMethodName());
 		}
+	}
+
+	private String getCallerMethodName() {
+		return Thread.currentThread().getStackTrace()[3].getMethodName();
+		// [0] = getStackTrace
+		// [1] = getCallerMethodName
+		// [2] = logEnter or logExit
+		// [3] = ✨ actual calling method
 	}
 }

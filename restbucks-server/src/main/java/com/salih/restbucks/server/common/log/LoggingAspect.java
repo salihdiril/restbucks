@@ -18,7 +18,9 @@ public class LoggingAspect implements Loggable {
 
 	@PostConstruct
 	public void init() {
+		logEnter();
 		logger().info("LoggingAspect initialized ✅");
+		logExit();
 	}
 
 	@Pointcut("execution(* com.salih.restbucks.server.web..*(..))")
