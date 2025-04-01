@@ -1,4 +1,4 @@
-package com.salih.restbucks.web;
+package com.salih.restbucks.server.web;
 
 import java.util.Map;
 
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.salih.restbucks.domain.Order;
-import com.salih.restbucks.service.ProductCatalog;
-import com.salih.restbucks.web.util.OrderUriParser;
+import com.salih.restbucks.server.domain.Order;
+import com.salih.restbucks.server.service.ProductCatalog;
+import com.salih.restbucks.server.web.util.OrderUriParser;
 
 @RestController
 @RequestMapping("/order")

@@ -1,4 +1,4 @@
-package com.salih.restbucks.service;
+package com.salih.restbucks.server.service;
 
 import java.util.Collection;
 import java.util.EnumMap;
@@ -7,10 +7,10 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.salih.restbucks.domain.MenuItem;
-import com.salih.restbucks.domain.Product;
-import com.salih.restbucks.domain.ProductType;
-import com.salih.restbucks.domain.PropertyKey;
+import com.salih.restbucks.server.domain.MenuItem;
+import com.salih.restbucks.server.domain.Product;
+import com.salih.restbucks.server.domain.ProductType;
+import com.salih.restbucks.server.domain.PropertyKey;
 
 @Service
 public class ProductCatalog {

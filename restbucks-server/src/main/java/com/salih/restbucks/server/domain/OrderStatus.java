@@ -1,4 +1,4 @@
-package com.salih.restbucks.domain;
+package com.salih.restbucks.server.domain;
 
 public enum OrderStatus {
 	PENDING,

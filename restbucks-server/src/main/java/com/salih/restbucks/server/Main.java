@@ -1,4 +1,4 @@
-package com.salih.restbucks;
+package com.salih.restbucks.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
