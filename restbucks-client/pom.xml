@@ -3,13 +3,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.salih</groupId>
-    <artifactId>restbucks-parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <parent>
+        <groupId>com.salih</groupId>
+        <artifactId>restbucks-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
-    <modules>
-        <module>restbucks-server</module>
-        <module>restbucks-client</module>
-    </modules>
+    <groupId>com.salih</groupId>
+    <artifactId>restbucks-client</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>Restbucks Client</name>
+
+    <properties>
+        <java.version>17</java.version>
+    </properties>
 </project>
