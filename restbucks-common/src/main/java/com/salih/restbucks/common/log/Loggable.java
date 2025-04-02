@@ -3,6 +3,8 @@ package com.salih.restbucks.common.log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.salih.restbucks.common.log.helpers.Emoji;
+
 public interface Loggable {
 	default Logger logger() {
 		return LogManager.getLogger(this.getClass().getName());
@@ -10,13 +12,13 @@ public interface Loggable {
 
 	default void logEnter() {
 		if (logger().isTraceEnabled()) {
-			logger().trace("➡\uFE0F Entering: {}.{}", getClass().getSimpleName(), getCallerMethodName());
+			logger().trace("{} Entering: {}.{}", Emoji.ENTERING, getClass().getSimpleName(), getCallerMethodName());
 		}
 	}
 
 	default void logExit() {
 		if (logger().isTraceEnabled()) {
-			logger().trace("⬅\uFE0F Exiting: {}.{}", getClass().getSimpleName(), getCallerMethodName());
+			logger().trace("{} Exiting: {}.{}", Emoji.EXITING, getClass().getSimpleName(), getCallerMethodName());
 		}
 	}
 

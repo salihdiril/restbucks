@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.salih.restbucks.common.log.Loggable;
+import com.salih.restbucks.common.log.helpers.Emoji;
 
 public class RestbucksHttpClient implements Loggable {
 	public String placeOrder(String product, int quantity, Map<String, String> attributes) {
@@ -23,20 +24,20 @@ public class RestbucksHttpClient implements Loggable {
 			}
 
 			URL url = new URL("http://localhost:8080/order?" + query);
-			logger().atDebug().log("🌐 Sending POST request to: {}", url);
+			logger().atDebug().log("{} Sending POST request to: {}", Emoji.WORLD, url);
 
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("POST");
 
 			try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
 				final String response = reader.readLine();
-				logger().atInfo().log("✅ Received response from server: {}", response);
+				logger().atInfo().log("{} Received response from server: {}", Emoji.CHECK, response);
 				logExit();
 				return response;
 			}
 		} catch (IOException e) {
-			logger().atError().log("❌ Failed to place order (product={}, quantity={}, attributes={}): {}",
-					product, quantity, attributes, e.getMessage());
+			logger().atError().log("{} Failed to place order (product={}, quantity={}, attributes={}): {}",
+					Emoji.ERROR, product, quantity, attributes, e.getMessage());
 			logExit();
 			return null;
 		}

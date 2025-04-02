@@ -9,6 +9,8 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+import com.salih.restbucks.common.log.helpers.Emoji;
+
 import jakarta.annotation.PostConstruct;
 
 @Aspect
@@ -19,7 +21,7 @@ public class LoggingAspect implements Loggable {
 	@PostConstruct
 	public void init() {
 		logEnter();
-		logger().info("LoggingAspect initialized ✅");
+		logger().info("LoggingAspect initialized {}", Emoji.CHECK);
 		logExit();
 	}
 
@@ -36,6 +38,6 @@ public class LoggingAspect implements Loggable {
 		final Signature signature = joinPoint.getSignature();
 		final String clazz = signature.getDeclaringType().getSimpleName();
 		final String method = signature.getName();
-		apiLogger.info("➡\uFE0F Entering: {}.{} with args {}", clazz, method, joinPoint.getArgs());
+		apiLogger.info("{} Entering: {}.{} with args {}", Emoji.ENTERING, clazz, method, joinPoint.getArgs());
 	}
 }

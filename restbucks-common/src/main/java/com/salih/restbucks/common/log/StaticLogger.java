@@ -3,6 +3,8 @@ package com.salih.restbucks.common.log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.salih.restbucks.common.log.helpers.Emoji;
+
 public enum StaticLogger {
 	;
 
@@ -13,14 +15,14 @@ public enum StaticLogger {
 	public static void logEnter(Class<?> clazz) {
 		Logger logger = LogManager.getLogger(clazz.getName());
 		if (logger.isTraceEnabled()) {
-			logger.trace("➡\uFE0F Entering: {}.{}", clazz.getSimpleName(), getCallerMethodName());
+			logger.trace("{} Entering: {}.{}", Emoji.ENTERING, clazz.getSimpleName(), getCallerMethodName());
 		}
 	}
 
 	public static void logExit(Class<?> clazz) {
 		Logger logger = LogManager.getLogger(clazz.getName());
 		if (logger.isTraceEnabled()) {
-			logger.trace("⬅\uFE0F Exiting: {}.{}", clazz.getSimpleName(), getCallerMethodName());
+			logger.trace("{} Exiting: {}.{}", Emoji.EXITING, clazz.getSimpleName(), getCallerMethodName());
 		}
 	}
 
