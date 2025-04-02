@@ -9,7 +9,7 @@
     </Appenders>
     <Loggers>
         <!-- System Logger (TRACE) -->
-        <Logger name="com.salih.restbucks.client" level="trace" additivity="false">
+        <Logger name="com.salih.restbucks.common" level="trace" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
 

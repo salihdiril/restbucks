@@ -36,6 +36,6 @@ public class LoggingAspect implements Loggable {
 		final Signature signature = joinPoint.getSignature();
 		final String clazz = signature.getDeclaringType().getSimpleName();
 		final String method = signature.getName();
-		apiLogger.info("➡️ Entering: {}.{} with args {}", clazz, method, joinPoint.getArgs());
+		apiLogger.info("➡\uFE0F Entering: {}.{} with args {}", clazz, method, joinPoint.getArgs());
 	}
 }

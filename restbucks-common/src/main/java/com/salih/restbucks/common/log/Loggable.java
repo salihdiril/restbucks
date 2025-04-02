@@ -10,13 +10,13 @@ public interface Loggable {
 
 	default void logEnter() {
 		if (logger().isTraceEnabled()) {
-			logger().trace("➡️ Entering: {}.{}", getClass().getSimpleName(), getCallerMethodName());
+			logger().trace("➡\uFE0F Entering: {}.{}", getClass().getSimpleName(), getCallerMethodName());
 		}
 	}
 
 	default void logExit() {
 		if (logger().isTraceEnabled()) {
-			logger().trace("⬅️ Exiting: {}.{}", getClass().getSimpleName(), getCallerMethodName());
+			logger().trace("⬅\uFE0F Exiting: {}.{}", getClass().getSimpleName(), getCallerMethodName());
 		}
 	}
 

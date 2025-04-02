@@ -13,14 +13,14 @@ public enum StaticLogger {
 	public static void logEnter(Class<?> clazz) {
 		Logger logger = LogManager.getLogger(clazz.getName());
 		if (logger.isTraceEnabled()) {
-			logger.trace("➡️ Entering: {}.{}", clazz.getSimpleName(), getCallerMethodName());
+			logger.trace("➡\uFE0F Entering: {}.{}", clazz.getSimpleName(), getCallerMethodName());
 		}
 	}
 
 	public static void logExit(Class<?> clazz) {
 		Logger logger = LogManager.getLogger(clazz.getName());
 		if (logger.isTraceEnabled()) {
-			logger.trace("⬅️ Exiting: {}.{}", clazz.getSimpleName(), getCallerMethodName());
+			logger.trace("⬅\uFE0F Exiting: {}.{}", clazz.getSimpleName(), getCallerMethodName());
 		}
 	}
 
