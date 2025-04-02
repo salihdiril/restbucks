@@ -31,14 +31,16 @@ public class ProductCatalog implements Loggable {
 	public Product findByName(String name) {
 		logEnter();
 
-		Product product = productMap.get(MenuItem.valueOf(name));
-		if (product == null) {
+		try {
+			Product product = productMap.get(MenuItem.valueOf(name));
+
+			logExit();
+			return product;
+
+		} catch (IllegalArgumentException ex) {
 			logger().atError().log("Product '{}' not found in product map", name);
 			throw new ProductNotFoundException(name);
 		}
-
-		logExit();
-		return product;
 	}
 
 	public Collection<Product> allProducts() {
