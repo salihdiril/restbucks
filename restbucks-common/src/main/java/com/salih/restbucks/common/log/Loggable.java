@@ -1,4 +1,4 @@
-package com.salih.restbucks.server.common.log;
+package com.salih.restbucks.common.log;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

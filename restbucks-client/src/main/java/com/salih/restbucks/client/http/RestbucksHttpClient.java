@@ -10,8 +10,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class RestbucksHttpClient {
+import com.salih.restbucks.common.log.Loggable;
+
+public class RestbucksHttpClient implements Loggable {
 	public String placeOrder(String product, int quantity, Map<String, String> attributes) {
+		logEnter();
+
 		try {
 			StringBuilder query = new StringBuilder("product=" + product + "&quantity=" + quantity);
 			for (Entry<String, String> entry : attributes.entrySet()) {
@@ -19,14 +23,21 @@ public class RestbucksHttpClient {
 			}
 
 			URL url = new URL("http://localhost:8080/order?" + query);
+			logger().atDebug().log("🌐 Sending POST request to: {}", url);
+
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("POST");
 
 			try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
-				return reader.readLine();
+				final String response = reader.readLine();
+				logger().atInfo().log("✅ Received response from server: {}", response);
+				logExit();
+				return response;
 			}
 		} catch (IOException e) {
-			System.err.println("❌ Failed to place order: " + e.getMessage());
+			logger().atError().log("❌ Failed to place order (product={}, quantity={}, attributes={}): {}",
+					product, quantity, attributes, e.getMessage());
+			logExit();
 			return null;
 		}
 	}

@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.salih.restbucks.server.common.log.Loggable;
+import com.salih.restbucks.common.log.Loggable;
 import com.salih.restbucks.server.domain.MenuItem;
 import com.salih.restbucks.server.domain.Product;
 import com.salih.restbucks.server.domain.ProductType;
@@ -29,10 +29,13 @@ public class ProductCatalog implements Loggable {
 
 	public Product findByName(String name) {
 		logEnter();
+
 		Product product = productMap.get(MenuItem.valueOf(name));
 		if (product == null) {
+			logger().atError().log("Product '{}' not found in product map", name);
 			throw new IllegalArgumentException("Product not found: " + name);
 		}
+
 		logExit();
 		return product;
 	}

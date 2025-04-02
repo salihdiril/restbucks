@@ -1,4 +1,4 @@
-package com.salih.restbucks.server.common.log;
+package com.salih.restbucks.common.log;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,7 +14,7 @@ import jakarta.annotation.PostConstruct;
 @Aspect
 @Component
 public class LoggingAspect implements Loggable {
-	private static final Logger apiLogger = LogManager.getLogger("com.salih.restbucks.server.common.log.LoggingAspect.api");
+	private static final Logger apiLogger = LogManager.getLogger("com.salih.restbucks.common.log.LoggingAspect.api");
 
 	@PostConstruct
 	public void init() {

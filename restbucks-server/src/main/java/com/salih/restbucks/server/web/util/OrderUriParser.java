@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import com.salih.restbucks.server.common.log.Loggable;
-import com.salih.restbucks.server.common.log.StaticLogger;
+import com.salih.restbucks.common.log.Loggable;
+import com.salih.restbucks.common.log.StaticLogger;
 import com.salih.restbucks.server.domain.Attribute;
 import com.salih.restbucks.server.domain.ConsumeLocation;
 import com.salih.restbucks.server.domain.Item;
