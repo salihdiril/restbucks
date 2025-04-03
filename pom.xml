@@ -22,6 +22,7 @@
         <spring.boot.version>3.4.4</spring.boot.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <log4j.version>2.24.3</log4j.version>
+        <junit.test.suite.version>1.12.1</junit.test.suite.version>
     </properties>
 
     <dependencyManagement>
@@ -71,6 +72,14 @@
                 <artifactId>log4j-to-slf4j</artifactId>
                 <version>${log4j.version}</version>
                 <scope>provided</scope>
+            </dependency>
+
+            <!-- JUnit Test Suite -->
+            <dependency>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-suite</artifactId>
+                <version>${junit.test.suite.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

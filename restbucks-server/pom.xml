@@ -52,6 +52,14 @@
             <artifactId>log4j-slf4j2-impl</artifactId>
         </dependency>
 
+        <!-- JUnit Test Suite -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
         <!-- Common module -->
         <dependency>
             <groupId>com.salih.restbucks</groupId>
