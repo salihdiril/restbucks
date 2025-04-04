@@ -43,7 +43,7 @@
   </xs:simpleType>
   <xs:complexType name="Attribute">
     <xs:sequence>
-      <xs:element name="propertyKey" type="PropertyKey"/>
+      <xs:element name="name" type="PropertyKey"/>
       <xs:element name="value" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
@@ -51,7 +51,7 @@
     <xs:sequence>
       <xs:element name="name" type="xs:string"/>
       <xs:element name="type" type="ProductType"/>
-      <xs:element name="properties" type="PropertyKey" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="attribute" type="Attribute" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="Item">
@@ -63,11 +63,8 @@
   </xs:complexType>
   <xs:complexType name="Order">
     <xs:sequence>
-      <xs:element name="orderId" type="xs:string"/>
       <xs:element name="items" type="Item" minOccurs="1" maxOccurs="unbounded"/>
       <xs:element name="location" type="ConsumeLocation"/>
-      <xs:element name="status" type="OrderStatus"/>
-      <xs:element name="cost" type="xs:double"/>
       <xs:element name="currency" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
