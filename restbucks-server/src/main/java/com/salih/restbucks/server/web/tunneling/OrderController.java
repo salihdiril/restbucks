@@ -1,4 +1,4 @@
-package com.salih.restbucks.server.web;
+package com.salih.restbucks.server.web.tunneling;
 
 import java.util.Map;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.salih.restbucks.common.log.Loggable;
 import com.salih.restbucks.server.domain.Order;
 import com.salih.restbucks.server.service.ProductCatalog;
-import com.salih.restbucks.server.web.util.OrderUriParser;
+import com.salih.restbucks.server.web.tunneling.util.OrderUriParser;
 
 @RestController
 @RequestMapping("/order")

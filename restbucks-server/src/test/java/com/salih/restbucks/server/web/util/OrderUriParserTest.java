@@ -19,6 +19,7 @@ import com.salih.restbucks.server.domain.Product;
 import com.salih.restbucks.server.domain.ProductType;
 import com.salih.restbucks.server.domain.PropertyKey;
 import com.salih.restbucks.server.service.ProductCatalog;
+import com.salih.restbucks.server.web.tunneling.util.OrderUriParser;
 
 @ExtendWith(MockitoExtension.class)
 public class OrderUriParserTest {
