@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns="http://restbucks.salih.com/schema"
+        xmlns:common="http://restbucks.salih.com/schema/common"
+        targetNamespace="http://restbucks.salih.com/schema"
+        elementFormDefault="qualified">
+
+  <xs:import namespace="http://restbucks.salih.com/schema/common" schemaLocation="common-types.xsd"/>
+
+  <xs:element name="orderConfirmation" type="OrderConfirmation"/>
+
+  <xs:complexType name="OrderConfirmation">
+    <xs:sequence>
+      <xs:element name="orderId" type="xs:string"/>
+      <xs:element name="itemNames" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+      <xs:element name="cost" type="xs:double"/>
+      <xs:element name="currency" type="xs:string"/>
+      <xs:element name="status" type="common:OrderStatus"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

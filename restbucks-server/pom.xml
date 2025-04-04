@@ -120,7 +120,8 @@
                         <phase>generate-sources</phase>
                         <configuration>
                             <sources>
-                                <source>${project.basedir}/src/main/resources/schema/order.xsd</source>
+                                <source>${project.parent.basedir}/restbucks-common/src/main/resources/schema/order.xsd</source>
+                                <source>${project.parent.basedir}/restbucks-common/src/main/resources/schema/order-confirmation.xsd</source>
                             </sources>
                             <outputDirectory>${project.build.directory}/generated-sources/jaxb</outputDirectory>
                             <packageName>com.salih.restbucks.server.web.pox.xmlmodel</packageName>

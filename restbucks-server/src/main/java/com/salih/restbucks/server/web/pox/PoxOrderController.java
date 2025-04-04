@@ -12,20 +12,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.salih.restbucks.common.log.Loggable;
+import com.salih.restbucks.server.web.pox.mapper.OrderConfirmationMapper;
 import com.salih.restbucks.server.web.pox.mapper.XmlOrderMapper;
 import com.salih.restbucks.server.web.pox.xmlmodel.Order;
+import com.salih.restbucks.server.web.pox.xmlmodel.OrderConfirmation;
 
 @RestController
 @RequestMapping("/pox/order")
 public class PoxOrderController implements Loggable {
 
-	@PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)
-	public ResponseEntity<Void> createOrder(@RequestBody Order xmlOrder) {
+	@PostMapping( //
+			consumes = MediaType.APPLICATION_XML_VALUE, //
+			produces = MediaType.APPLICATION_XML_VALUE //
+	)
+	public ResponseEntity<OrderConfirmation> createOrder(@RequestBody Order xmlOrder) {
 		logger().atInfo().log("Received POX order with currency: {}", xmlOrder.getCurrency());
 
 		com.salih.restbucks.server.domain.Order domainOrder = XmlOrderMapper.map(xmlOrder);
-		// TODO: Create OrderService for processing domainOrder
-		return ResponseEntity.status(HttpStatus.CREATED).build();
+
+		OrderConfirmation response = OrderConfirmationMapper.map(domainOrder);
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
 
 	@ExceptionHandler(UnmarshalException.class)
