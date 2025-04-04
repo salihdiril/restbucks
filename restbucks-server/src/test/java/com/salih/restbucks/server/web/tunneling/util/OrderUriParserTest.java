@@ -1,4 +1,4 @@
-package com.salih.restbucks.server.web.util;
+package com.salih.restbucks.server.web.tunneling.util;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;

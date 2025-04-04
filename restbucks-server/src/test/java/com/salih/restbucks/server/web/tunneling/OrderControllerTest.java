@@ -1,4 +1,4 @@
-package com.salih.restbucks.server.web;
+package com.salih.restbucks.server.web.tunneling;
 
 import static org.hamcrest.Matchers.startsWith;
 import static org.mockito.Mockito.when;

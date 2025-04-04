@@ -5,8 +5,8 @@ import org.junit.platform.suite.api.SelectClasses;
 import org.junit.platform.suite.api.Suite;
 
 import com.salih.restbucks.server.service.ProductCatalogTest;
-import com.salih.restbucks.server.web.OrderControllerTest;
-import com.salih.restbucks.server.web.util.OrderUriParserTest;
+import com.salih.restbucks.server.web.tunneling.OrderControllerTest;
+import com.salih.restbucks.server.web.tunneling.util.OrderUriParserTest;
 
 @Suite
 @IncludeEngines("junit-jupiter")
