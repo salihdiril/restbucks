@@ -15,7 +15,7 @@ import com.salih.restbucks.server.web.pox.xmlmodel.Product;
 public class XmlOrderMapper {
 
 	public static Order map(com.salih.restbucks.server.web.pox.xmlmodel.Order xmlOrder) {
-		List<Item> domainItems = xmlOrder.getItems().stream() //
+		List<Item> domainItems = xmlOrder.getItems().getItem().stream() //
 				.map(XmlOrderMapper::mapItem) //
 				.toList();
 

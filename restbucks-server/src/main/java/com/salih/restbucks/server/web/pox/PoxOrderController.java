@@ -32,7 +32,7 @@ public class PoxOrderController implements Loggable {
 
 		OrderConfirmation response = OrderConfirmationMapper.map(domainOrder);
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(response);
+		return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_XML).body(response);
 	}
 
 	@ExceptionHandler(UnmarshalException.class)
