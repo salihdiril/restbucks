@@ -23,16 +23,20 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="Order">
+  <xs:complexType name="Items">
     <xs:sequence>
-      <xs:element name="orderId" type="xs:string"/>
-      <xs:element name="items" type="Item" minOccurs="1" maxOccurs="unbounded"/>
-      <xs:element name="location" type="common:ConsumeLocation"/>
-      <xs:element name="status" type="common:OrderStatus"/>
-      <xs:element name="cost" type="xs:double"/>
-      <xs:element name="currency" type="xs:string"/>
+      <xs:element name="item" type="Item" minOccurs="1" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:element name="order" type="Order"/>
+  <xs:element name="order">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="items" type="Items"/>
+        <xs:element name="location" type="common:ConsumeLocation"/>
+        <xs:element name="currency" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
 </xs:schema>
