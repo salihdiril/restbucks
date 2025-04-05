@@ -125,6 +125,12 @@
                             </sources>
                             <outputDirectory>${project.build.directory}/generated-sources/jaxb</outputDirectory>
                             <packageName>com.salih.restbucks.server.web.pox.xmlmodel</packageName>
+                            <addGeneratedAnnotation>true</addGeneratedAnnotation>
+                            <enableIntrospection>true</enableIntrospection>
+                            <arguments>
+                                <argument>-XautoNameResolution</argument>
+                            </arguments>
+                            <extension>true</extension>
                         </configuration>
                     </execution>
                 </executions>
