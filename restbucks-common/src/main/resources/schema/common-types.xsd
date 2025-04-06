@@ -5,6 +5,8 @@
         xmlns="http://restbucks.salih.com/schema/common"
         elementFormDefault="qualified">
 
+  <xs:element name="attribute" type="Attribute"/>
+
   <xs:simpleType name="ConsumeLocation">
     <xs:restriction base="xs:string">
       <xs:enumeration value="IN_SHOP"/>
