@@ -38,6 +38,37 @@ public class PoxOrderControllerTest {
 			</order>
 			""";
 
+	private static final String INVALID_XML = """
+        <order xmlns="http://restbucks.salih.com/schema">
+            <items>
+                <item>
+                    <quantity>2</quantity>
+                    <product>
+                        <name>Latte</name>
+                        <type>INVALID_ENUM</type>
+                    </product>
+                </item>
+            </items>
+            <location>IN_SHOP</location>
+            <currency>USD</currency>
+        </order>
+        """;
+
+	private static final String MISSING_LOCATION_XML = """
+        <order xmlns="http://restbucks.salih.com/schema">
+            <items>
+                <item>
+                    <quantity>2</quantity>
+                    <product>
+                        <name>Latte</name>
+                        <type>DRINK</type>
+                    </product>
+                </item>
+            </items>
+            <currency>USD</currency>
+        </order>
+        """;
+
 	@Test
 	void shouldAcceptXmlOrderAndReturnConfirmation() throws Exception {
 		mockMvc.perform(post("/pox/order") //
@@ -47,5 +78,23 @@ public class PoxOrderControllerTest {
 				.andExpect(status().isCreated()) //
 				.andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_XML)) //
 				.andExpect(xpath("/orderConfirmation/orderId").exists());
+	}
+
+	@Test
+	void shouldRejectInvalidXml() throws Exception {
+		mockMvc.perform(post("/pox/order") //
+						.contentType(MediaType.APPLICATION_XML) //
+						.accept(MediaType.APPLICATION_XML) //
+						.content(INVALID_XML)) //
+				.andExpect(status().isBadRequest());
+	}
+
+	@Test
+	void shouldRejectOrderWithMissingLocation() throws Exception {
+		mockMvc.perform(post("/pox/order") //
+						.contentType(MediaType.APPLICATION_XML) //
+						.accept(MediaType.APPLICATION_XML) //
+						.content(MISSING_LOCATION_XML)) //
+				.andExpect(status().isBadRequest());
 	}
 }

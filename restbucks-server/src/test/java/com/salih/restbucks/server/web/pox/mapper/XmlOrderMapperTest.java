@@ -55,4 +55,28 @@ public class XmlOrderMapperTest {
 		assertEquals(OrderStatus.PENDING, domainOrder.getStatus());
 		assertEquals(com.salih.restbucks.server.domain.ConsumeLocation.IN_SHOP, domainOrder.getLocation());
 	}
+
+	@Test
+	void shouldMapItemWithNoAttributes() {
+		var xmlProduct = new Product();
+		xmlProduct.setName("Latte");
+		xmlProduct.setType(ProductType.DRINK);
+		xmlProduct.getAttribute();
+
+		var xmlItem = new Item();
+		xmlItem.setQuantity(1);
+		xmlItem.setProduct(xmlProduct);
+
+		var xmlOrder = new Order();
+		var xmlItems = new Items();
+		xmlItems.getItem().add(xmlItem);
+		xmlOrder.setItems(xmlItems);
+		xmlOrder.setLocation(ConsumeLocation.IN_SHOP);
+		xmlOrder.setCurrency("USD");
+
+		var domainOrder = XmlOrderMapper.map(xmlOrder);
+		assertNotNull(domainOrder);
+		assertEquals(1, domainOrder.getItems().size());
+		assertEquals(0, domainOrder.getItems().get(0).attributes().size());
+	}
 }
