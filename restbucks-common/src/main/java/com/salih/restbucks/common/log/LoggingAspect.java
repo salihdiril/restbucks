@@ -25,15 +25,11 @@ public class LoggingAspect implements Loggable {
 		logExit();
 	}
 
-	@Pointcut("execution(* com.salih.restbucks.server.web..*(..))")
-	public static void inControllers() {
+	@Pointcut("@within(org.springframework.web.bind.annotation.RestController)")
+	public static void inRestControllers() {
 	}
 
-	@Pointcut("within(com.salih.restbucks.server.web.util..*)")
-	public static void inWebUtil() {
-	}
-
-	@Before("inControllers() && !inWebUtil()")
+	@Before("inRestControllers()")
 	public void logApiRequests(JoinPoint joinPoint) {
 		final Signature signature = joinPoint.getSignature();
 		final String clazz = signature.getDeclaringType().getSimpleName();
