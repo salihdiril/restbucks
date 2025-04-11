@@ -16,6 +16,8 @@ import com.salih.restbucks.server.web.pox.mapper.OrderConfirmationMapper;
 import com.salih.restbucks.server.web.pox.mapper.XmlOrderMapper;
 import com.salih.restbucks.server.web.pox.xmlmodel.Order;
 import com.salih.restbucks.server.web.pox.xmlmodel.OrderConfirmation;
+import com.salih.restbucks.server.web.validation.XmlOrderValidator;
+import com.salih.restbucks.server.web.validation.util.ValidatorRunner;
 
 @RestController
 @RequestMapping("/pox/order")
@@ -28,8 +30,9 @@ public class PoxOrderController implements Loggable {
 	public ResponseEntity<OrderConfirmation> createOrder(@RequestBody Order xmlOrder) {
 		logger().atInfo().log("Received POX order with currency: {}", xmlOrder.getCurrency());
 
-		com.salih.restbucks.server.domain.Order domainOrder = XmlOrderMapper.map(xmlOrder);
+		ValidatorRunner.run(new XmlOrderValidator(), xmlOrder);
 
+		com.salih.restbucks.server.domain.Order domainOrder = XmlOrderMapper.map(xmlOrder);
 		OrderConfirmation response = OrderConfirmationMapper.map(domainOrder);
 
 		return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_XML).body(response);
@@ -39,6 +42,12 @@ public class PoxOrderController implements Loggable {
 	public ResponseEntity<String> handleInvalidXml(UnmarshalException ex) {
 		logger().atWarn().log("Invalid XML received: {}", ex.getMessage());
 		return ResponseEntity.badRequest().body("Malformed XML payload.");
+	}
+
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity<String> handleIllegalArgument(IllegalArgumentException ex) {
+		logger().atWarn().log("invalid input: {}", ex.getMessage());
+		return ResponseEntity.badRequest().body("Invalid values in XML payload.");
 	}
 
 }
