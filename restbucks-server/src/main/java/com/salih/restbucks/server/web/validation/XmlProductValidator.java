@@ -8,7 +8,11 @@ import com.salih.restbucks.server.web.pox.xmlmodel.Product;
 import com.salih.restbucks.server.web.validation.util.ValidatorRunner;
 
 public class XmlProductValidator implements Validator<Product>, Loggable {
-	private final XmlAttributeValidator attributeValidator = new XmlAttributeValidator();
+	private final XmlAttributeValidator attributeValidator;
+
+	public XmlProductValidator(XmlAttributeValidator attributeValidator) {
+		this.attributeValidator = attributeValidator;
+	}
 
 	@Override
 	public void validate(Product target) {

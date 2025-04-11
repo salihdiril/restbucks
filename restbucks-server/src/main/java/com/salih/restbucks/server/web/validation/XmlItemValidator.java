@@ -7,7 +7,11 @@ import com.salih.restbucks.server.web.pox.xmlmodel.Item;
 import com.salih.restbucks.server.web.validation.util.ValidatorRunner;
 
 public class XmlItemValidator implements Validator<Item>, Loggable {
-	private final XmlProductValidator productValidator = new XmlProductValidator();
+	private final XmlProductValidator productValidator;
+
+	public XmlItemValidator(XmlProductValidator productValidator) {
+		this.productValidator = productValidator;
+	}
 
 	@Override
 	public void validate(Item target) {

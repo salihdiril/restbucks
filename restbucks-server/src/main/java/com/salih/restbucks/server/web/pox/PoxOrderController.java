@@ -2,6 +2,7 @@ package com.salih.restbucks.server.web.pox;
 
 import java.rmi.UnmarshalException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,13 @@ import com.salih.restbucks.server.web.validation.util.ValidatorRunner;
 @RequestMapping("/pox/order")
 public class PoxOrderController implements Loggable {
 
+	private final XmlOrderValidator orderValidator;
+
+	@Autowired
+	public PoxOrderController(XmlOrderValidator orderValidator) {
+		this.orderValidator = orderValidator;
+	}
+
 	@PostMapping( //
 			consumes = MediaType.APPLICATION_XML_VALUE, //
 			produces = MediaType.APPLICATION_XML_VALUE //
@@ -30,7 +38,7 @@ public class PoxOrderController implements Loggable {
 	public ResponseEntity<OrderConfirmation> createOrder(@RequestBody Order xmlOrder) {
 		logger().atInfo().log("Received POX order with currency: {}", xmlOrder.getCurrency());
 
-		ValidatorRunner.run(new XmlOrderValidator(), xmlOrder);
+		ValidatorRunner.run(orderValidator, xmlOrder);
 
 		com.salih.restbucks.server.domain.Order domainOrder = XmlOrderMapper.map(xmlOrder);
 		OrderConfirmation response = OrderConfirmationMapper.map(domainOrder);
