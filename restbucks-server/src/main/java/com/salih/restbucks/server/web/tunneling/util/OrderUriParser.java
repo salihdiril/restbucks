@@ -35,7 +35,9 @@ public enum OrderUriParser implements Loggable {
 
 		Item item = new Item(product, quantityParam, attributes);
 		StaticLogger.logExit(OrderUriParser.class);
-		return new Order(UUID.randomUUID().toString(), List.of(item), ConsumeLocation.TAKE_AWAY, OrderStatus.PENDING, 0.0, "USD");
+		return new Order(UUID.randomUUID().toString(), List.of(item), ConsumeLocation.TAKE_AWAY, "USD") //
+				.setStatus(OrderStatus.PENDING) //
+				.setCost(0.0);
 	}
 
 	private static String extractProductParam(Map<String, String> params) {

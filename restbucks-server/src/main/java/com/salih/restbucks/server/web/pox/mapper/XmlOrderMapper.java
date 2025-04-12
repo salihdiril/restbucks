@@ -28,9 +28,9 @@ public class XmlOrderMapper implements Loggable {
 		return new Order(UUID.randomUUID().toString(), //
 				domainItems, //
 				ConsumeLocation.valueOf(xmlOrder.getLocation().value()), //
-				OrderStatus.PENDING, //
-				0.0, //
-				xmlOrder.getCurrency());
+				xmlOrder.getCurrency()) //
+				.setStatus(OrderStatus.PENDING) //
+				.setCost(0.0);
 	}
 
 	private static Item mapItem(com.salih.restbucks.server.web.pox.xmlmodel.Item xmlItem) {

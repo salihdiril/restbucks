@@ -22,7 +22,9 @@ public class OrderConfirmationMapperTest {
 		String orderId = UUID.randomUUID().toString();
 		Product product = new Product("LATTE", ProductType.DRINK, List.of());
 		Item item = new Item(product, 2, List.of());
-		Order order = new Order(orderId, List.of(item), ConsumeLocation.IN_SHOP, OrderStatus.PAID, 5.75, "USD");
+		Order order = new Order(orderId, List.of(item), ConsumeLocation.IN_SHOP, "USD") //
+				.setStatus(OrderStatus.PAID) //
+				.setCost(5.75);
 
 		OrderConfirmation orderConfirmation = OrderConfirmationMapper.map(order);
 
