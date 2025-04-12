@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://restbucks.salih.com/schema/crud"
+           xmlns="http://restbucks.salih.com/schema/crud"
+           elementFormDefault="qualified"
+>
+
+  <!-- ======= Root Element ======= -->
+  <xs:element name="order" type="Order"/>
+
+  <!-- ======= Order Resource ======= -->
+  <xs:complexType name="Order">
+    <xs:sequence>
+      <!-- ======= Server-side fields (optional) ======= -->
+      <xs:element name="id" type="xs:string" minOccurs="0" nillable="true"/>
+      <xs:element name="status" type="OrderStatus" minOccurs="0" nillable="true"/>
+      <xs:element name="createdAt" type="xs:dateTime" minOccurs="0" nillable="true"/>
+      <xs:element name="cost" type="xs:double" minOccurs="0" nillable="true"/>
+
+      <!-- ======= Client-submitted fields (required) ======= -->
+      <xs:element name="location" type="ConsumeLocation"/>
+      <xs:element name="currency" type="xs:string"/>
+      <xs:element name="items" type="Items"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ======= Item List ======= -->
+  <xs:complexType name="Items">
+    <xs:sequence>
+      <xs:element name="item" type="Item" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ======= Item ======= -->
+  <xs:complexType name="Item">
+    <xs:sequence>
+      <xs:element name="product" type="Product"/>
+      <xs:element name="quantity" type="xs:int"/>
+      <xs:element name="attributes" type="Attributes" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ======= Product ======= -->
+  <xs:complexType name="Product">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="type" type="ProductType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ======= Attributes ======= -->
+  <xs:complexType name="Attributes">
+    <xs:sequence>
+      <xs:element name="attribute" type="Attribute" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ======= Attribute ======= -->
+  <xs:complexType name="Attribute">
+    <xs:sequence>
+      <xs:element name="name" type="PropertyKey"/>
+      <xs:element name="value" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- ======= Enums ======= -->
+
+  <xs:simpleType name="OrderStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PENDING"/>
+      <xs:enumeration value="PAID"/>
+      <xs:enumeration value="PREPARING"/>
+      <xs:enumeration value="SERVED"/>
+      <xs:enumeration value="CANCELLED"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ProductType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DRINK"/>
+      <xs:enumeration value="FOOD"/>
+      <xs:enumeration value="OTHER"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ConsumeLocation">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TAKE_AWAY"/>
+      <xs:enumeration value="IN_SHOP"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="PropertyKey">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MILK"/>
+      <xs:enumeration value="SIZE"/>
+      <xs:enumeration value="WHIPPED_CREAM"/>
+      <xs:enumeration value="SHOT"/>
+      <xs:enumeration value="KIND"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+</xs:schema>
