@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
+import com.salih.restbucks.server.web.pox.validation.PoxXmlItemValidator;
+import com.salih.restbucks.server.web.pox.validation.PoxXmlOrderValidator;
 import com.salih.restbucks.server.web.pox.xmlmodel.ConsumeLocation;
 import com.salih.restbucks.server.web.pox.xmlmodel.Item;
 import com.salih.restbucks.server.web.pox.xmlmodel.Items;
@@ -22,12 +24,12 @@ import com.salih.restbucks.server.web.pox.xmlmodel.Order;
 import com.salih.restbucks.server.web.pox.xmlmodel.Product;
 
 @SpringBootTest
-public class XmlOrderValidatorTest {
+public class PoxXmlOrderValidatorTest {
 
 	@MockitoBean
-	private XmlItemValidator itemValidator;
+	private PoxXmlItemValidator itemValidator;
 	@Autowired
-	private XmlOrderValidator orderValidator;
+	private PoxXmlOrderValidator orderValidator;
 
 	@Test
 	void shouldValidateValidOrder() {

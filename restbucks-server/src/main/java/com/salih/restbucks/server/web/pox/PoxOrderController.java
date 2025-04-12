@@ -17,17 +17,17 @@ import com.salih.restbucks.server.web.pox.mapper.OrderConfirmationMapper;
 import com.salih.restbucks.server.web.pox.mapper.XmlOrderMapper;
 import com.salih.restbucks.server.web.pox.xmlmodel.Order;
 import com.salih.restbucks.server.web.pox.xmlmodel.OrderConfirmation;
-import com.salih.restbucks.server.web.validation.XmlOrderValidator;
+import com.salih.restbucks.server.web.pox.validation.PoxXmlOrderValidator;
 import com.salih.restbucks.server.web.validation.util.ValidatorRunner;
 
 @RestController
 @RequestMapping("/pox/order")
 public class PoxOrderController implements Loggable {
 
-	private final XmlOrderValidator orderValidator;
+	private final PoxXmlOrderValidator orderValidator;
 
 	@Autowired
-	public PoxOrderController(XmlOrderValidator orderValidator) {
+	public PoxOrderController(PoxXmlOrderValidator orderValidator) {
 		this.orderValidator = orderValidator;
 	}
 

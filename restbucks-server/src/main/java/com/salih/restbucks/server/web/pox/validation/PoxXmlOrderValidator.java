@@ -1,4 +1,4 @@
-package com.salih.restbucks.server.web.validation;
+package com.salih.restbucks.server.web.pox.validation;
 
 import static com.salih.restbucks.server.web.validation.util.XmlValidationUtils.validateEnumNotNull;
 import static com.salih.restbucks.server.web.validation.util.XmlValidationUtils.validateListNotEmpty;
@@ -8,13 +8,14 @@ import org.springframework.stereotype.Component;
 
 import com.salih.restbucks.common.log.Loggable;
 import com.salih.restbucks.server.web.pox.xmlmodel.Order;
+import com.salih.restbucks.server.web.validation.Validator;
 import com.salih.restbucks.server.web.validation.util.ValidatorRunner;
 
 @Component
-public class XmlOrderValidator implements Validator<Order>, Loggable {
-	private final XmlItemValidator itemValidator;
+public class PoxXmlOrderValidator implements Validator<Order>, Loggable {
+	private final PoxXmlItemValidator itemValidator;
 
-	public XmlOrderValidator(XmlItemValidator itemValidator) {
+	public PoxXmlOrderValidator(PoxXmlItemValidator itemValidator) {
 		this.itemValidator = itemValidator;
 	}
 

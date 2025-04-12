@@ -1,4 +1,4 @@
-package com.salih.restbucks.server.web.validation;
+package com.salih.restbucks.server.web.pox.validation;
 
 import static com.salih.restbucks.server.web.validation.util.XmlValidationUtils.validateEnumNotNull;
 import static com.salih.restbucks.server.web.validation.util.XmlValidationUtils.validateNotNull;
@@ -8,9 +8,10 @@ import org.springframework.stereotype.Component;
 
 import com.salih.restbucks.common.log.Loggable;
 import com.salih.restbucks.server.web.pox.xmlmodel.Attribute;
+import com.salih.restbucks.server.web.validation.Validator;
 
 @Component
-public class XmlAttributeValidator implements Validator<Attribute>, Loggable {
+public class PoxXmlAttributeValidator implements Validator<Attribute>, Loggable {
 	@Override
 	public void validate(Attribute target) {
 		logEnter();

@@ -10,17 +10,17 @@ import com.salih.restbucks.server.web.pox.mapper.OrderConfirmationMapperTest;
 import com.salih.restbucks.server.web.pox.mapper.XmlOrderMapperTest;
 import com.salih.restbucks.server.web.tunneling.OrderControllerTest;
 import com.salih.restbucks.server.web.tunneling.util.OrderUriParserTest;
-import com.salih.restbucks.server.web.validation.XmlAttributeValidatorTest;
-import com.salih.restbucks.server.web.validation.XmlItemValidatorTest;
-import com.salih.restbucks.server.web.validation.XmlOrderValidatorTest;
-import com.salih.restbucks.server.web.validation.XmlProductValidatorTest;
+import com.salih.restbucks.server.web.validation.PoxXmlAttributeValidatorTest;
+import com.salih.restbucks.server.web.validation.PoxXmlItemValidatorTest;
+import com.salih.restbucks.server.web.validation.PoxXmlOrderValidatorTest;
+import com.salih.restbucks.server.web.validation.PoxXmlProductValidatorTest;
 import com.salih.restbucks.server.web.validation.util.ValidatorRunnerTest;
 import com.salih.restbucks.server.web.validation.util.XmlValidationUtilsTest;
 
 @Suite
 @IncludeEngines("junit-jupiter")
 @SelectClasses({ ProductCatalogTest.class, OrderUriParserTest.class, OrderControllerTest.class, OrderConfirmationMapperTest.class, XmlOrderMapperTest.class,
-		PoxOrderControllerTest.class, ValidatorRunnerTest.class, XmlValidationUtilsTest.class, XmlAttributeValidatorTest.class, XmlProductValidatorTest.class,
-		XmlItemValidatorTest.class, XmlOrderValidatorTest.class })
+		PoxOrderControllerTest.class, ValidatorRunnerTest.class, XmlValidationUtilsTest.class, PoxXmlAttributeValidatorTest.class, PoxXmlProductValidatorTest.class,
+		PoxXmlItemValidatorTest.class, PoxXmlOrderValidatorTest.class })
 public class UnitTests {
 }

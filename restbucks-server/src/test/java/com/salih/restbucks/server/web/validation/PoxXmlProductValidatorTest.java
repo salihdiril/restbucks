@@ -14,18 +14,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
+import com.salih.restbucks.server.web.pox.validation.PoxXmlAttributeValidator;
+import com.salih.restbucks.server.web.pox.validation.PoxXmlProductValidator;
 import com.salih.restbucks.server.web.pox.xmlmodel.Attribute;
 import com.salih.restbucks.server.web.pox.xmlmodel.Product;
 import com.salih.restbucks.server.web.pox.xmlmodel.ProductType;
 import com.salih.restbucks.server.web.pox.xmlmodel.PropertyKey;
 
 @SpringBootTest
-public class XmlProductValidatorTest {
+public class PoxXmlProductValidatorTest {
 
 	@MockitoBean
-	private XmlAttributeValidator attributeValidator;
+	private PoxXmlAttributeValidator attributeValidator;
 	@Autowired
-	private XmlProductValidator productValidator;
+	private PoxXmlProductValidator productValidator;
 
 	@Test
 	void shouldValidateValidProduct() {

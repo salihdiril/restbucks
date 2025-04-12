@@ -8,14 +8,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.salih.restbucks.server.web.pox.validation.PoxXmlAttributeValidator;
 import com.salih.restbucks.server.web.pox.xmlmodel.Attribute;
 import com.salih.restbucks.server.web.pox.xmlmodel.PropertyKey;
 
 @SpringBootTest
-public class XmlAttributeValidatorTest {
+public class PoxXmlAttributeValidatorTest {
 
 	@Autowired
-	private XmlAttributeValidator attributeValidator;
+	private PoxXmlAttributeValidator attributeValidator;
 
 	@Test
 	void shouldNotThrowWhenAttributeIsValid() {
