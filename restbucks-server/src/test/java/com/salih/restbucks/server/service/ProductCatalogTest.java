@@ -1,13 +1,14 @@
 package com.salih.restbucks.server.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.salih.restbucks.common.exception.domain.ProductNotFoundException;
 import com.salih.restbucks.server.domain.Product;
-import com.salih.restbucks.server.domain.PropertyKey;
 
 public class ProductCatalogTest {
 	private ProductCatalog productCatalog;
@@ -28,7 +29,6 @@ public class ProductCatalogTest {
 	void shouldReturnCorrectProductForMenuItem() {
 		Product espresso = productCatalog.findByName("ESPRESSO");
 		assertEquals("ESPRESSO", espresso.name());
-		assertTrue(espresso.properties().contains(PropertyKey.SHOT));
 	}
 
 	@Test

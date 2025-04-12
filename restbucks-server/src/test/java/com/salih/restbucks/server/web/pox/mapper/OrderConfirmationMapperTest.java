@@ -20,7 +20,7 @@ public class OrderConfirmationMapperTest {
 	@Test
 	void shouldMapOrderToOrderConfirmationCorrectly() {
 		String orderId = UUID.randomUUID().toString();
-		Product product = new Product("LATTE", ProductType.DRINK, List.of());
+		Product product = new Product("LATTE", ProductType.DRINK);
 		Item item = new Item(product, 2).setAttributes(List.of());
 		Order order = new Order(orderId, List.of(item), ConsumeLocation.IN_SHOP, "USD") //
 				.setStatus(OrderStatus.PAID) //

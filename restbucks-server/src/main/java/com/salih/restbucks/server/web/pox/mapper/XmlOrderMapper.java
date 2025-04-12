@@ -45,8 +45,7 @@ public class XmlOrderMapper implements Loggable {
 
 		com.salih.restbucks.server.domain.Product product = new com.salih.restbucks.server.domain.Product( //
 				xmlProduct.getName(), //
-				ProductType.valueOf(xmlProduct.getType().name()), //
-				attributes.stream().map(Attribute::propertyKey).toList());
+				ProductType.valueOf(xmlProduct.getType().name()));
 		StaticLogger.logger(XmlOrderMapper.class).atTrace().log("Created domain product: {}", product);
 
 		StaticLogger.logExit(XmlOrderMapper.class);

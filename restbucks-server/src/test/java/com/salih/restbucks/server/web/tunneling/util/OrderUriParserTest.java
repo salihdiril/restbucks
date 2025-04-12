@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
-import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -32,7 +31,7 @@ public class OrderUriParserTest {
 
 	@BeforeEach
 	void setUp() {
-		dummyProduct = new Product("ESPRESSO", ProductType.DRINK, List.of(PropertyKey.SHOT));
+		dummyProduct = new Product("ESPRESSO", ProductType.DRINK);
 	}
 
 	@Test
@@ -85,7 +84,7 @@ public class OrderUriParserTest {
 
 	@Test
 	void shouldParseCaseInsensitiveProduct() {
-		when(productCatalog.findByName("HOT_CHOCOLATE")).thenReturn(new Product("HOT_CHOCOLATE", ProductType.DRINK, List.of()));
+		when(productCatalog.findByName("HOT_CHOCOLATE")).thenReturn(new Product("HOT_CHOCOLATE", ProductType.DRINK));
 
 		Map<String, String> params = Map.of("product", "hot_chocolate");
 		Order order = OrderUriParser.parse(params, productCatalog);

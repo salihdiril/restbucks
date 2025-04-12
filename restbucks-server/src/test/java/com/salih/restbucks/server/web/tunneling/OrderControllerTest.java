@@ -6,8 +6,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +30,7 @@ public class OrderControllerTest {
 	@Autowired
 	private ProductCatalog productCatalog;
 
-	private final Product dummyProduct = new Product("ESPRESSO", ProductType.DRINK, List.of());
+	private final Product dummyProduct = new Product("ESPRESSO", ProductType.DRINK);
 
 	@BeforeEach
 	void setUp() {
