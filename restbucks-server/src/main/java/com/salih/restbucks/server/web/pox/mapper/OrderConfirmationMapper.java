@@ -14,7 +14,7 @@ public class OrderConfirmationMapper implements Loggable {
 		StaticLogger.logger(OrderConfirmationMapper.class).atDebug().log("Mapping orderId={}, itemCount={}", order.getOrderId(), order.getItems().size());
 
 		List<String> items = order.getItems().stream() //
-				.map(item -> item.product().name()) //
+				.map(item -> item.getProduct().name()) //
 				.toList();
 		StaticLogger.logger(OrderConfirmationMapper.class).atTrace().log("Extracted item names: {}", items);
 

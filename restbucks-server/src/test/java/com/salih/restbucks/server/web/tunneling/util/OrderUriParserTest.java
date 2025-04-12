@@ -1,6 +1,9 @@
 package com.salih.restbucks.server.web.tunneling.util;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
@@ -19,7 +22,6 @@ import com.salih.restbucks.server.domain.Product;
 import com.salih.restbucks.server.domain.ProductType;
 import com.salih.restbucks.server.domain.PropertyKey;
 import com.salih.restbucks.server.service.ProductCatalog;
-import com.salih.restbucks.server.web.tunneling.util.OrderUriParser;
 
 @ExtendWith(MockitoExtension.class)
 public class OrderUriParserTest {
@@ -43,10 +45,10 @@ public class OrderUriParserTest {
 		assertEquals(1, order.getItems().size());
 
 		Item item = order.getItems().get(0);
-		assertEquals(dummyProduct, item.product());
-		assertEquals(2, item.quantity());
+		assertEquals(dummyProduct, item.getProduct());
+		assertEquals(2, item.getQuantity());
 
-		Attribute attr = item.attributes().get(0);
+		Attribute attr = item.getAttributes().get(0);
 		assertEquals(PropertyKey.SHOT, attr.propertyKey());
 		assertEquals("double", attr.value());
 	}
@@ -70,7 +72,9 @@ public class OrderUriParserTest {
 
 		Map<String, String> params = Map.of("product", "ESPRESSO");
 		Order order = OrderUriParser.parse(params, productCatalog);
-		assertEquals(1, order.getItems().get(0).quantity());
+		assertNotNull(order);
+		assertNotNull(order.getItems());
+		assertEquals(1, order.getItems().get(0).getQuantity());
 	}
 
 	@Test
@@ -85,6 +89,8 @@ public class OrderUriParserTest {
 
 		Map<String, String> params = Map.of("product", "hot_chocolate");
 		Order order = OrderUriParser.parse(params, productCatalog);
-		assertEquals("HOT_CHOCOLATE", order.getItems().get(0).product().name());
+		assertNotNull(order);
+		assertNotNull(order.getItems());
+		assertEquals("HOT_CHOCOLATE", order.getItems().get(0).getProduct().name());
 	}
 }

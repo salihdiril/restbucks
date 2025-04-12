@@ -50,6 +50,6 @@ public class XmlOrderMapper implements Loggable {
 		StaticLogger.logger(XmlOrderMapper.class).atTrace().log("Created domain product: {}", product);
 
 		StaticLogger.logExit(XmlOrderMapper.class);
-		return new Item(product, xmlItem.getQuantity(), attributes);
+		return new Item(product, xmlItem.getQuantity()).setAttributes(attributes);
 	}
 }

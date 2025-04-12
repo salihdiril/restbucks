@@ -44,12 +44,12 @@ public class XmlOrderMapperTest {
 		assertEquals(1, domainOrder.getItems().size());
 
 		com.salih.restbucks.server.domain.Item domainItem = domainOrder.getItems().get(0);
-		assertEquals("Latte", domainItem.product().name());
-		assertEquals(com.salih.restbucks.server.domain.ProductType.DRINK, domainItem.product().type());
-		assertEquals(2, domainItem.quantity());
-		assertEquals(1, domainItem.attributes().size());
-		assertEquals(com.salih.restbucks.server.domain.PropertyKey.SIZE, domainItem.attributes().get(0).propertyKey());
-		assertEquals("Large", domainItem.attributes().get(0).value());
+		assertEquals("Latte", domainItem.getProduct().name());
+		assertEquals(com.salih.restbucks.server.domain.ProductType.DRINK, domainItem.getProduct().type());
+		assertEquals(2, domainItem.getQuantity());
+		assertEquals(1, domainItem.getAttributes().size());
+		assertEquals(com.salih.restbucks.server.domain.PropertyKey.SIZE, domainItem.getAttributes().get(0).propertyKey());
+		assertEquals("Large", domainItem.getAttributes().get(0).value());
 
 		assertEquals("USD", domainOrder.getCurrency());
 		assertEquals(OrderStatus.PENDING, domainOrder.getStatus());
@@ -77,6 +77,6 @@ public class XmlOrderMapperTest {
 		var domainOrder = XmlOrderMapper.map(xmlOrder);
 		assertNotNull(domainOrder);
 		assertEquals(1, domainOrder.getItems().size());
-		assertEquals(0, domainOrder.getItems().get(0).attributes().size());
+		assertEquals(0, domainOrder.getItems().get(0).getAttributes().size());
 	}
 }
