@@ -3,6 +3,7 @@ package com.salih.restbucks.client.api;
 import java.util.Map;
 
 import com.salih.restbucks.client.http.RestbucksHttpClient;
+import com.salih.restbucks.client.web.crud.xmlmodel.Attributes;
 import com.salih.restbucks.client.web.pox.xmlmodel.Attribute;
 import com.salih.restbucks.client.web.pox.xmlmodel.ConsumeLocation;
 import com.salih.restbucks.client.web.pox.xmlmodel.Item;
@@ -19,21 +20,22 @@ public class RestbucksClientApp implements Loggable {
 	public static void main(String[] args) {
 		StaticLogger.logger(RestbucksClientApp.class).atInfo().log("{} Starting Restbucks client...", Emoji.ROCKET);
 
-		String response = sendRequest("pox");
+		String response = sendRequest("crud");
 
 		StaticLogger.logger(RestbucksClientApp.class).atInfo().log("{} Received response: {}", Emoji.CHECK, response);
 	}
 
 	public static String sendRequest(String commTech) {
 		RestbucksHttpClient client = new RestbucksHttpClient();
-		if (commTech.equalsIgnoreCase("tunneling")) {
+		if ("tunneling".equalsIgnoreCase(commTech)) {
 			Map<String, String> attributes = Map.of("shot", "double");
 
 			StaticLogger.logger(RestbucksClientApp.class).atDebug().log("{} Sending order for product='ESPRESSO', quantity=1, attributes={}", Emoji.CART,
 					attributes);
 
 			return client.placeOrderUriTunnelling("ESPRESSO", 1, attributes);
-		} else if (commTech.equalsIgnoreCase("pox")) {
+
+		} else if ("pox".equalsIgnoreCase(commTech)) {
 			Order order = new Order();
 			Items items = new Items();
 
@@ -58,6 +60,34 @@ public class RestbucksClientApp implements Loggable {
 			order.setCurrency("USD");
 
 			return client.placeOrderPox(order);
+
+		} else if ("crud".equalsIgnoreCase(commTech)) {
+			com.salih.restbucks.client.web.crud.xmlmodel.Order order = new com.salih.restbucks.client.web.crud.xmlmodel.Order();
+			com.salih.restbucks.client.web.crud.xmlmodel.Items items = new com.salih.restbucks.client.web.crud.xmlmodel.Items();
+
+			com.salih.restbucks.client.web.crud.xmlmodel.Item item = new com.salih.restbucks.client.web.crud.xmlmodel.Item();
+			item.setQuantity(1);
+
+			com.salih.restbucks.client.web.crud.xmlmodel.Product product = new com.salih.restbucks.client.web.crud.xmlmodel.Product();
+			product.setName("ESPRESSO");
+			product.setType(com.salih.restbucks.client.web.crud.xmlmodel.ProductType.DRINK);
+
+			com.salih.restbucks.client.web.crud.xmlmodel.Attribute attribute = new com.salih.restbucks.client.web.crud.xmlmodel.Attribute();
+			attribute.setName(com.salih.restbucks.client.web.crud.xmlmodel.PropertyKey.SHOT);
+			attribute.setValue("double");
+
+			Attributes attributes = new Attributes();
+			attributes.getAttribute().add(attribute);
+
+			item.setProduct(product);
+			item.setAttributes(attributes);
+			items.getItem().add(item);
+
+			order.setItems(items);
+			order.setLocation(com.salih.restbucks.client.web.crud.xmlmodel.ConsumeLocation.TAKE_AWAY);
+			order.setCurrency("USD");
+
+			return client.placeOrderCrud(order);
 		}
 		return "";
 	}

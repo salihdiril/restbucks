@@ -81,4 +81,37 @@ public class RestbucksHttpClient implements Loggable {
 			return null;
 		}
 	}
+
+	public String placeOrderCrud(com.salih.restbucks.client.web.crud.xmlmodel.Order xmlOrder) {
+		logEnter();
+
+		try {
+			JAXBContext context = JAXBContext.newInstance("com.salih.restbucks.client.web.crud.xmlmodel");
+			Marshaller marshaller = context.createMarshaller();
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			marshaller.marshal(xmlOrder, baos);
+			byte[] xmlBytes = baos.toByteArray();
+
+			URL url = new URL("http://localhost:8080/orders");
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setDoOutput(true);
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Type", "application/xml");
+			conn.setRequestProperty("Accept", "application/xml");
+			conn.setFixedLengthStreamingMode(xmlBytes.length);
+			conn.getOutputStream().write(xmlBytes);
+
+			try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+				final String response = reader.readLine();
+				logExit();
+				return response;
+			}
+		} catch (Exception e) {
+			logger().atError().log("{} Failed to place XML order: {}", Emoji.ERROR, e.getMessage());
+			logExit();
+			return null;
+		}
+	}
 }
