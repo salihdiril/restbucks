@@ -11,7 +11,7 @@ import com.salih.restbucks.server.web.crud.validation.CrudXmlOrderValidatorTest;
 import com.salih.restbucks.server.web.crud.validation.CrudXmlProductValidatorTest;
 import com.salih.restbucks.server.web.pox.PoxOrderControllerTest;
 import com.salih.restbucks.server.web.pox.mapper.PoxOrderConfirmationMapperTest;
-import com.salih.restbucks.server.web.pox.mapper.PoxXmlOrderMapperTest;
+import com.salih.restbucks.server.web.pox.mapper.PoxOrderMapperTest;
 import com.salih.restbucks.server.web.pox.validation.PoxXmlAttributeValidatorTest;
 import com.salih.restbucks.server.web.pox.validation.PoxXmlItemValidatorTest;
 import com.salih.restbucks.server.web.pox.validation.PoxXmlOrderValidatorTest;
@@ -27,7 +27,7 @@ import com.salih.restbucks.server.web.validation.util.XmlValidationUtilsTest;
 		OrderUriParserTest.class, //
 		OrderControllerTest.class, //
 		PoxOrderConfirmationMapperTest.class, //
-		PoxXmlOrderMapperTest.class, //
+		PoxOrderMapperTest.class, //
 		PoxOrderControllerTest.class, //
 		ValidatorRunnerTest.class, //
 		XmlValidationUtilsTest.class, //

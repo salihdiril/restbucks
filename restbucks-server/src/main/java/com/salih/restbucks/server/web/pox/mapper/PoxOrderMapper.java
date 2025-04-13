@@ -18,7 +18,7 @@ import com.salih.restbucks.server.web.mapper.ToDomainMapper;
 import com.salih.restbucks.server.web.pox.xmlmodel.Product;
 
 @Component
-public class PoxXmlOrderMapper implements ToDomainMapper<com.salih.restbucks.server.web.pox.xmlmodel.Order>, Loggable {
+public class PoxOrderMapper implements ToDomainMapper<com.salih.restbucks.server.web.pox.xmlmodel.Order>, Loggable {
 
 	@Override
 	public Order toDomain(com.salih.restbucks.server.web.pox.xmlmodel.Order xml) {
@@ -31,7 +31,7 @@ public class PoxXmlOrderMapper implements ToDomainMapper<com.salih.restbucks.ser
 		List<Item> domainItems = xmlOrder.getItems().getItem().stream() //
 				.map(this::mapItem) //
 				.toList();
-		StaticLogger.logger(PoxXmlOrderMapper.class).atTrace().log("Extracted item names: {}", domainItems);
+		StaticLogger.logger(PoxOrderMapper.class).atTrace().log("Extracted item names: {}", domainItems);
 
 		logExit();
 		return new Order(UUID.randomUUID().toString(), //
@@ -45,17 +45,17 @@ public class PoxXmlOrderMapper implements ToDomainMapper<com.salih.restbucks.ser
 	private Item mapItem(com.salih.restbucks.server.web.pox.xmlmodel.Item xmlItem) {
 		logEnter();
 		Product xmlProduct = xmlItem.getProduct();
-		StaticLogger.logger(PoxXmlOrderMapper.class).atDebug().log("Mapping xmlItem for product: {}, quantity: {}", xmlProduct.getName(), xmlItem.getQuantity());
+		StaticLogger.logger(PoxOrderMapper.class).atDebug().log("Mapping xmlItem for product: {}, quantity: {}", xmlProduct.getName(), xmlItem.getQuantity());
 
 		List<Attribute> attributes = xmlProduct.getAttribute().stream() //
 				.map(attribute -> new Attribute(PropertyKey.valueOf(attribute.getName().name()), attribute.getValue())) //
 				.toList();
-		StaticLogger.logger(PoxXmlOrderMapper.class).atTrace().log("Mapped attributes: {}", attributes);
+		StaticLogger.logger(PoxOrderMapper.class).atTrace().log("Mapped attributes: {}", attributes);
 
 		com.salih.restbucks.server.domain.Product product = new com.salih.restbucks.server.domain.Product( //
 				xmlProduct.getName(), //
 				ProductType.valueOf(xmlProduct.getType().name()));
-		StaticLogger.logger(PoxXmlOrderMapper.class).atTrace().log("Created domain product: {}", product);
+		StaticLogger.logger(PoxOrderMapper.class).atTrace().log("Created domain product: {}", product);
 
 		logExit();
 		return new Item(product, xmlItem.getQuantity()).setAttributes(attributes);

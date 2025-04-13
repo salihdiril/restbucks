@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.salih.restbucks.common.log.Loggable;
 import com.salih.restbucks.server.web.pox.mapper.PoxOrderConfirmationMapper;
-import com.salih.restbucks.server.web.pox.mapper.PoxXmlOrderMapper;
+import com.salih.restbucks.server.web.pox.mapper.PoxOrderMapper;
 import com.salih.restbucks.server.web.pox.xmlmodel.Order;
 import com.salih.restbucks.server.web.pox.xmlmodel.OrderConfirmation;
 import com.salih.restbucks.server.web.pox.validation.PoxXmlOrderValidator;
@@ -25,11 +25,11 @@ import com.salih.restbucks.server.web.validation.util.ValidatorRunner;
 public class PoxOrderController implements Loggable {
 
 	private final PoxXmlOrderValidator orderValidator;
-	private final PoxXmlOrderMapper orderMapper;
+	private final PoxOrderMapper orderMapper;
 	private final PoxOrderConfirmationMapper orderConfirmationMapper;
 
 	@Autowired
-	public PoxOrderController(PoxXmlOrderValidator orderValidator, PoxXmlOrderMapper orderMapper, PoxOrderConfirmationMapper orderConfirmationMapper) {
+	public PoxOrderController(PoxXmlOrderValidator orderValidator, PoxOrderMapper orderMapper, PoxOrderConfirmationMapper orderConfirmationMapper) {
 		this.orderValidator = orderValidator;
 		this.orderMapper = orderMapper;
 		this.orderConfirmationMapper = orderConfirmationMapper;

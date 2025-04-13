@@ -17,10 +17,10 @@ import com.salih.restbucks.server.web.pox.xmlmodel.Product;
 import com.salih.restbucks.server.web.pox.xmlmodel.ProductType;
 import com.salih.restbucks.server.web.pox.xmlmodel.PropertyKey;
 @SpringBootTest
-public class PoxXmlOrderMapperTest {
+public class PoxOrderMapperTest {
 
 	@Autowired
-	private PoxXmlOrderMapper orderMapper;
+	private PoxOrderMapper orderMapper;
 
 	@Test
 	void shouldMapXmlOrderToDomainOrderCorrectly() {
