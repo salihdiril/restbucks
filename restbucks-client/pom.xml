@@ -63,8 +63,9 @@
                 <artifactId>jaxb2-maven-plugin</artifactId>
                 <version>3.3.0</version>
                 <executions>
+                    <!-- Execution for POX (test support) -->
                     <execution>
-                        <id>xjc</id>
+                        <id>jaxb-pox</id>
                         <goals>
                             <goal>xjc</goal>
                         </goals>
@@ -74,8 +75,30 @@
                                 <source>${project.parent.basedir}/restbucks-common/src/main/resources/schema/order.xsd</source>
                                 <source>${project.parent.basedir}/restbucks-common/src/main/resources/schema/order-confirmation.xsd</source>
                             </sources>
-                            <outputDirectory>${project.build.directory}/generated-sources/jaxb</outputDirectory>
+                            <outputDirectory>${project.build.directory}/generated-sources/jaxb/pox</outputDirectory>
                             <packageName>com.salih.restbucks.client.web.pox.xmlmodel</packageName>
+                            <addGeneratedAnnotation>true</addGeneratedAnnotation>
+                            <enableIntrospection>true</enableIntrospection>
+                            <arguments>
+                                <argument>-XautoNameResolution</argument>
+                            </arguments>
+                            <extension>true</extension>
+                        </configuration>
+                    </execution>
+
+                    <!-- Execution for CRUD -->
+                    <execution>
+                        <id>jaxb-crud</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.parent.basedir}/restbucks-common/src/main/resources/schema/crud-order.xsd</source>
+                            </sources>
+                            <outputDirectory>${project.build.directory}/generated-sources/jaxb/crud</outputDirectory>
+                            <packageName>com.salih.restbucks.client.web.crud.xmlmodel</packageName>
                             <addGeneratedAnnotation>true</addGeneratedAnnotation>
                             <enableIntrospection>true</enableIntrospection>
                             <arguments>
