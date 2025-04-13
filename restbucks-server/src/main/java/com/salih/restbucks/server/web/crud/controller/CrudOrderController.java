@@ -3,6 +3,7 @@ package com.salih.restbucks.server.web.crud.controller;
 import java.rmi.UnmarshalException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -38,7 +39,7 @@ public class CrudOrderController implements Loggable {
 
 		Order responseXmlOrder = orderMapper.toXml(domainOrder);
 
-		return ResponseEntity.ok(responseXmlOrder);
+		return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_XML).body(responseXmlOrder);
 	}
 
 	@ExceptionHandler(java.rmi.UnmarshalException.class)
