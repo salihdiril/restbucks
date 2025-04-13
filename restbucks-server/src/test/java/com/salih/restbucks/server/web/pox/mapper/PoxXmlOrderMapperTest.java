@@ -15,7 +15,7 @@ import com.salih.restbucks.server.web.pox.xmlmodel.Product;
 import com.salih.restbucks.server.web.pox.xmlmodel.ProductType;
 import com.salih.restbucks.server.web.pox.xmlmodel.PropertyKey;
 
-public class XmlOrderMapperTest {
+public class PoxXmlOrderMapperTest {
 	@Test
 	void shouldMapXmlOrderToDomainOrderCorrectly() {
 		Attribute xmlAttribute = new Attribute();
@@ -38,7 +38,7 @@ public class XmlOrderMapperTest {
 		xmlOrder.setCurrency("USD");
 		xmlOrder.setLocation(ConsumeLocation.IN_SHOP);
 
-		com.salih.restbucks.server.domain.Order domainOrder = XmlOrderMapper.map(xmlOrder);
+		com.salih.restbucks.server.domain.Order domainOrder = PoxXmlOrderMapper.map(xmlOrder);
 
 		assertNotNull(domainOrder);
 		assertEquals(1, domainOrder.getItems().size());
@@ -74,7 +74,7 @@ public class XmlOrderMapperTest {
 		xmlOrder.setLocation(ConsumeLocation.IN_SHOP);
 		xmlOrder.setCurrency("USD");
 
-		var domainOrder = XmlOrderMapper.map(xmlOrder);
+		var domainOrder = PoxXmlOrderMapper.map(xmlOrder);
 		assertNotNull(domainOrder);
 		assertEquals(1, domainOrder.getItems().size());
 		assertEquals(0, domainOrder.getItems().get(0).getAttributes().size());

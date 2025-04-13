@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.salih.restbucks.common.log.Loggable;
-import com.salih.restbucks.server.web.pox.mapper.OrderConfirmationMapper;
-import com.salih.restbucks.server.web.pox.mapper.XmlOrderMapper;
+import com.salih.restbucks.server.web.pox.mapper.PoxOrderConfirmationMapper;
+import com.salih.restbucks.server.web.pox.mapper.PoxXmlOrderMapper;
 import com.salih.restbucks.server.web.pox.xmlmodel.Order;
 import com.salih.restbucks.server.web.pox.xmlmodel.OrderConfirmation;
 import com.salih.restbucks.server.web.pox.validation.PoxXmlOrderValidator;
@@ -40,8 +40,8 @@ public class PoxOrderController implements Loggable {
 
 		ValidatorRunner.run(orderValidator, xmlOrder);
 
-		com.salih.restbucks.server.domain.Order domainOrder = XmlOrderMapper.map(xmlOrder);
-		OrderConfirmation response = OrderConfirmationMapper.map(domainOrder);
+		com.salih.restbucks.server.domain.Order domainOrder = PoxXmlOrderMapper.map(xmlOrder);
+		OrderConfirmation response = PoxOrderConfirmationMapper.map(domainOrder);
 
 		return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_XML).body(response);
 	}

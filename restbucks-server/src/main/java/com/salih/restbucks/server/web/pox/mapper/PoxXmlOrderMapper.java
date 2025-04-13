@@ -14,17 +14,17 @@ import com.salih.restbucks.server.domain.ProductType;
 import com.salih.restbucks.server.domain.PropertyKey;
 import com.salih.restbucks.server.web.pox.xmlmodel.Product;
 
-public class XmlOrderMapper implements Loggable {
+public class PoxXmlOrderMapper implements Loggable {
 
 	public static Order map(com.salih.restbucks.server.web.pox.xmlmodel.Order xmlOrder) {
-		StaticLogger.logEnter(XmlOrderMapper.class);
+		StaticLogger.logEnter(PoxXmlOrderMapper.class);
 
 		List<Item> domainItems = xmlOrder.getItems().getItem().stream() //
-				.map(XmlOrderMapper::mapItem) //
+				.map(PoxXmlOrderMapper::mapItem) //
 				.toList();
-		StaticLogger.logger(XmlOrderMapper.class).atTrace().log("Extracted item names: {}", domainItems);
+		StaticLogger.logger(PoxXmlOrderMapper.class).atTrace().log("Extracted item names: {}", domainItems);
 
-		StaticLogger.logExit(XmlOrderMapper.class);
+		StaticLogger.logExit(PoxXmlOrderMapper.class);
 		return new Order(UUID.randomUUID().toString(), //
 				domainItems, //
 				ConsumeLocation.valueOf(xmlOrder.getLocation().value()), //
@@ -34,21 +34,21 @@ public class XmlOrderMapper implements Loggable {
 	}
 
 	private static Item mapItem(com.salih.restbucks.server.web.pox.xmlmodel.Item xmlItem) {
-		StaticLogger.logEnter(XmlOrderMapper.class);
+		StaticLogger.logEnter(PoxXmlOrderMapper.class);
 		Product xmlProduct = xmlItem.getProduct();
-		StaticLogger.logger(XmlOrderMapper.class).atDebug().log("Mapping xmlItem for product: {}, quantity: {}", xmlProduct.getName(), xmlItem.getQuantity());
+		StaticLogger.logger(PoxXmlOrderMapper.class).atDebug().log("Mapping xmlItem for product: {}, quantity: {}", xmlProduct.getName(), xmlItem.getQuantity());
 
 		List<Attribute> attributes = xmlProduct.getAttribute().stream() //
 				.map(attribute -> new Attribute(PropertyKey.valueOf(attribute.getName().name()), attribute.getValue())) //
 				.toList();
-		StaticLogger.logger(XmlOrderMapper.class).atTrace().log("Mapped attributes: {}", attributes);
+		StaticLogger.logger(PoxXmlOrderMapper.class).atTrace().log("Mapped attributes: {}", attributes);
 
 		com.salih.restbucks.server.domain.Product product = new com.salih.restbucks.server.domain.Product( //
 				xmlProduct.getName(), //
 				ProductType.valueOf(xmlProduct.getType().name()));
-		StaticLogger.logger(XmlOrderMapper.class).atTrace().log("Created domain product: {}", product);
+		StaticLogger.logger(PoxXmlOrderMapper.class).atTrace().log("Created domain product: {}", product);
 
-		StaticLogger.logExit(XmlOrderMapper.class);
+		StaticLogger.logExit(PoxXmlOrderMapper.class);
 		return new Item(product, xmlItem.getQuantity()).setAttributes(attributes);
 	}
 }

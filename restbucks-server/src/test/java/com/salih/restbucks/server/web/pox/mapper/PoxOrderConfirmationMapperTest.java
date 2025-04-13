@@ -16,7 +16,7 @@ import com.salih.restbucks.server.domain.Product;
 import com.salih.restbucks.server.domain.ProductType;
 import com.salih.restbucks.server.web.pox.xmlmodel.OrderConfirmation;
 
-public class OrderConfirmationMapperTest {
+public class PoxOrderConfirmationMapperTest {
 	@Test
 	void shouldMapOrderToOrderConfirmationCorrectly() {
 		String orderId = UUID.randomUUID().toString();
@@ -26,7 +26,7 @@ public class OrderConfirmationMapperTest {
 				.setStatus(OrderStatus.PAID) //
 				.setCost(5.75);
 
-		OrderConfirmation orderConfirmation = OrderConfirmationMapper.map(order);
+		OrderConfirmation orderConfirmation = PoxOrderConfirmationMapper.map(order);
 
 		assertNotNull(orderConfirmation);
 		assertEquals(orderId, orderConfirmation.getOrderId());

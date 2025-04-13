@@ -10,8 +10,8 @@ import com.salih.restbucks.server.web.crud.validation.CrudXmlItemValidatorTest;
 import com.salih.restbucks.server.web.crud.validation.CrudXmlOrderValidatorTest;
 import com.salih.restbucks.server.web.crud.validation.CrudXmlProductValidatorTest;
 import com.salih.restbucks.server.web.pox.PoxOrderControllerTest;
-import com.salih.restbucks.server.web.pox.mapper.OrderConfirmationMapperTest;
-import com.salih.restbucks.server.web.pox.mapper.XmlOrderMapperTest;
+import com.salih.restbucks.server.web.pox.mapper.PoxOrderConfirmationMapperTest;
+import com.salih.restbucks.server.web.pox.mapper.PoxXmlOrderMapperTest;
 import com.salih.restbucks.server.web.pox.validation.PoxXmlAttributeValidatorTest;
 import com.salih.restbucks.server.web.pox.validation.PoxXmlItemValidatorTest;
 import com.salih.restbucks.server.web.pox.validation.PoxXmlOrderValidatorTest;
@@ -26,8 +26,8 @@ import com.salih.restbucks.server.web.validation.util.XmlValidationUtilsTest;
 @SelectClasses({ ProductCatalogTest.class, //
 		OrderUriParserTest.class, //
 		OrderControllerTest.class, //
-		OrderConfirmationMapperTest.class, //
-		XmlOrderMapperTest.class, //
+		PoxOrderConfirmationMapperTest.class, //
+		PoxXmlOrderMapperTest.class, //
 		PoxOrderControllerTest.class, //
 		ValidatorRunnerTest.class, //
 		XmlValidationUtilsTest.class, //
