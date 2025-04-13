@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Component;
 
 import com.salih.restbucks.common.log.Loggable;
+import com.salih.restbucks.common.log.helpers.JsonStringSerializer;
 import com.salih.restbucks.server.domain.Attribute;
 import com.salih.restbucks.server.domain.ConsumeLocation;
 import com.salih.restbucks.server.domain.Item;
@@ -30,31 +31,30 @@ public class PoxOrderMapper implements ToDomainMapper<com.salih.restbucks.server
 		List<Item> domainItems = xmlOrder.getItems().getItem().stream() //
 				.map(this::mapItem) //
 				.toList();
-		logger().atTrace().log("Extracted item names: {}", domainItems);
 
-		logExit();
-		return new Order(UUID.randomUUID().toString(), //
+		final Order order = new Order(UUID.randomUUID().toString(), //
 				domainItems, //
 				ConsumeLocation.valueOf(xmlOrder.getLocation().value()), //
 				xmlOrder.getCurrency()) //
 				.setStatus(OrderStatus.PENDING) //
 				.setCost(0.0);
+		logger().atDebug().log("JAXB generated Order converted to Domain Order: \n {}", JsonStringSerializer.toJsonString(order));
+
+		logExit();
+		return order;
 	}
 
 	private Item mapItem(com.salih.restbucks.server.web.pox.xmlmodel.Item xmlItem) {
 		logEnter();
 		Product xmlProduct = xmlItem.getProduct();
-		logger().atDebug().log("Mapping xmlItem for product: {}, quantity: {}", xmlProduct.getName(), xmlItem.getQuantity());
 
 		List<Attribute> attributes = xmlProduct.getAttribute().stream() //
 				.map(attribute -> new Attribute(PropertyKey.valueOf(attribute.getName().name()), attribute.getValue())) //
 				.toList();
-		logger().atTrace().log("Mapped attributes: {}", attributes);
 
 		com.salih.restbucks.server.domain.Product product = new com.salih.restbucks.server.domain.Product( //
 				xmlProduct.getName(), //
 				ProductType.valueOf(xmlProduct.getType().name()));
-		logger().atTrace().log("Created domain product: {}", product);
 
 		logExit();
 		return new Item(product, xmlItem.getQuantity()).setAttributes(attributes);
