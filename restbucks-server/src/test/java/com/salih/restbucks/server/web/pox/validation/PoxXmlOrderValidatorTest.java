@@ -1,4 +1,4 @@
-package com.salih.restbucks.server.web.validation;
+package com.salih.restbucks.server.web.pox.validation;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,8 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
-import com.salih.restbucks.server.web.pox.validation.PoxXmlItemValidator;
-import com.salih.restbucks.server.web.pox.validation.PoxXmlOrderValidator;
 import com.salih.restbucks.server.web.pox.xmlmodel.ConsumeLocation;
 import com.salih.restbucks.server.web.pox.xmlmodel.Item;
 import com.salih.restbucks.server.web.pox.xmlmodel.Items;

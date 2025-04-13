@@ -1,4 +1,4 @@
-package com.salih.restbucks.server.web.validation;
+package com.salih.restbucks.server.web.pox.validation;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.salih.restbucks.server.web.pox.validation.PoxXmlAttributeValidator;
 import com.salih.restbucks.server.web.pox.xmlmodel.Attribute;
 import com.salih.restbucks.server.web.pox.xmlmodel.PropertyKey;
 
