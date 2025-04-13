@@ -12,10 +12,9 @@
   <xs:complexType name="Order">
     <xs:sequence>
       <!-- ======= Server-side fields (optional) ======= -->
-      <xs:element name="id" type="xs:string" minOccurs="0" nillable="true"/>
-      <xs:element name="status" type="OrderStatus" minOccurs="0" nillable="true"/>
-      <xs:element name="createdAt" type="xs:dateTime" minOccurs="0" nillable="true"/>
-      <xs:element name="cost" type="xs:double" minOccurs="0" nillable="true"/>
+      <xs:element name="id" type="xs:string" minOccurs="0"/>
+      <xs:element name="status" type="OrderStatus" minOccurs="0"/>
+      <xs:element name="cost" type="xs:double" minOccurs="0"/>
 
       <!-- ======= Client-submitted fields (required) ======= -->
       <xs:element name="location" type="ConsumeLocation"/>
