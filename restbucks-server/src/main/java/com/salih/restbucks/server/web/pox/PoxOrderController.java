@@ -25,10 +25,14 @@ import com.salih.restbucks.server.web.validation.util.ValidatorRunner;
 public class PoxOrderController implements Loggable {
 
 	private final PoxXmlOrderValidator orderValidator;
+	private final PoxXmlOrderMapper orderMapper;
+	private final PoxOrderConfirmationMapper orderConfirmationMapper;
 
 	@Autowired
-	public PoxOrderController(PoxXmlOrderValidator orderValidator) {
+	public PoxOrderController(PoxXmlOrderValidator orderValidator, PoxXmlOrderMapper orderMapper, PoxOrderConfirmationMapper orderConfirmationMapper) {
 		this.orderValidator = orderValidator;
+		this.orderMapper = orderMapper;
+		this.orderConfirmationMapper = orderConfirmationMapper;
 	}
 
 	@PostMapping( //
@@ -40,8 +44,8 @@ public class PoxOrderController implements Loggable {
 
 		ValidatorRunner.run(orderValidator, xmlOrder);
 
-		com.salih.restbucks.server.domain.Order domainOrder = PoxXmlOrderMapper.map(xmlOrder);
-		OrderConfirmation response = PoxOrderConfirmationMapper.map(domainOrder);
+		com.salih.restbucks.server.domain.Order domainOrder = orderMapper.toDomain(xmlOrder);
+		OrderConfirmation response = orderConfirmationMapper.toXml(domainOrder);
 
 		return ResponseEntity.status(HttpStatus.CREATED).contentType(MediaType.APPLICATION_XML).body(response);
 	}

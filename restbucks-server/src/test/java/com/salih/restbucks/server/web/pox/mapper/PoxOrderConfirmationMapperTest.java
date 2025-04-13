@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.salih.restbucks.server.domain.ConsumeLocation;
 import com.salih.restbucks.server.domain.Item;
@@ -16,7 +18,12 @@ import com.salih.restbucks.server.domain.Product;
 import com.salih.restbucks.server.domain.ProductType;
 import com.salih.restbucks.server.web.pox.xmlmodel.OrderConfirmation;
 
+@SpringBootTest
 public class PoxOrderConfirmationMapperTest {
+
+	@Autowired
+	private PoxOrderConfirmationMapper orderConfirmationMapper;
+
 	@Test
 	void shouldMapOrderToOrderConfirmationCorrectly() {
 		String orderId = UUID.randomUUID().toString();
@@ -26,7 +33,7 @@ public class PoxOrderConfirmationMapperTest {
 				.setStatus(OrderStatus.PAID) //
 				.setCost(5.75);
 
-		OrderConfirmation orderConfirmation = PoxOrderConfirmationMapper.map(order);
+		OrderConfirmation orderConfirmation = orderConfirmationMapper.toXml(order);
 
 		assertNotNull(orderConfirmation);
 		assertEquals(orderId, orderConfirmation.getOrderId());

@@ -3,6 +3,8 @@ package com.salih.restbucks.server.web.pox.mapper;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
+
 import com.salih.restbucks.common.log.Loggable;
 import com.salih.restbucks.common.log.StaticLogger;
 import com.salih.restbucks.server.domain.Attribute;
@@ -12,15 +14,22 @@ import com.salih.restbucks.server.domain.Order;
 import com.salih.restbucks.server.domain.OrderStatus;
 import com.salih.restbucks.server.domain.ProductType;
 import com.salih.restbucks.server.domain.PropertyKey;
+import com.salih.restbucks.server.web.mapper.ToDomainMapper;
 import com.salih.restbucks.server.web.pox.xmlmodel.Product;
 
-public class PoxXmlOrderMapper implements Loggable {
+@Component
+public class PoxXmlOrderMapper implements ToDomainMapper<com.salih.restbucks.server.web.pox.xmlmodel.Order>, Loggable {
 
-	public static Order map(com.salih.restbucks.server.web.pox.xmlmodel.Order xmlOrder) {
+	@Override
+	public Order toDomain(com.salih.restbucks.server.web.pox.xmlmodel.Order xml) {
+		return map(xml);
+	}
+
+	private Order map(com.salih.restbucks.server.web.pox.xmlmodel.Order xmlOrder) {
 		StaticLogger.logEnter(PoxXmlOrderMapper.class);
 
 		List<Item> domainItems = xmlOrder.getItems().getItem().stream() //
-				.map(PoxXmlOrderMapper::mapItem) //
+				.map(this::mapItem) //
 				.toList();
 		StaticLogger.logger(PoxXmlOrderMapper.class).atTrace().log("Extracted item names: {}", domainItems);
 
@@ -33,7 +42,7 @@ public class PoxXmlOrderMapper implements Loggable {
 				.setCost(0.0);
 	}
 
-	private static Item mapItem(com.salih.restbucks.server.web.pox.xmlmodel.Item xmlItem) {
+	private Item mapItem(com.salih.restbucks.server.web.pox.xmlmodel.Item xmlItem) {
 		StaticLogger.logEnter(PoxXmlOrderMapper.class);
 		Product xmlProduct = xmlItem.getProduct();
 		StaticLogger.logger(PoxXmlOrderMapper.class).atDebug().log("Mapping xmlItem for product: {}, quantity: {}", xmlProduct.getName(), xmlItem.getQuantity());

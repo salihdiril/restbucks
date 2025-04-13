@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import com.salih.restbucks.server.domain.OrderStatus;
 import com.salih.restbucks.server.web.pox.xmlmodel.Attribute;
@@ -14,8 +16,12 @@ import com.salih.restbucks.server.web.pox.xmlmodel.Order;
 import com.salih.restbucks.server.web.pox.xmlmodel.Product;
 import com.salih.restbucks.server.web.pox.xmlmodel.ProductType;
 import com.salih.restbucks.server.web.pox.xmlmodel.PropertyKey;
-
+@SpringBootTest
 public class PoxXmlOrderMapperTest {
+
+	@Autowired
+	private PoxXmlOrderMapper orderMapper;
+
 	@Test
 	void shouldMapXmlOrderToDomainOrderCorrectly() {
 		Attribute xmlAttribute = new Attribute();
@@ -38,7 +44,7 @@ public class PoxXmlOrderMapperTest {
 		xmlOrder.setCurrency("USD");
 		xmlOrder.setLocation(ConsumeLocation.IN_SHOP);
 
-		com.salih.restbucks.server.domain.Order domainOrder = PoxXmlOrderMapper.map(xmlOrder);
+		com.salih.restbucks.server.domain.Order domainOrder = orderMapper.toDomain(xmlOrder);
 
 		assertNotNull(domainOrder);
 		assertEquals(1, domainOrder.getItems().size());
@@ -74,7 +80,7 @@ public class PoxXmlOrderMapperTest {
 		xmlOrder.setLocation(ConsumeLocation.IN_SHOP);
 		xmlOrder.setCurrency("USD");
 
-		var domainOrder = PoxXmlOrderMapper.map(xmlOrder);
+		var domainOrder = orderMapper.toDomain(xmlOrder);
 		assertNotNull(domainOrder);
 		assertEquals(1, domainOrder.getItems().size());
 		assertEquals(0, domainOrder.getItems().get(0).getAttributes().size());
