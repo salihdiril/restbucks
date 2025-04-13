@@ -20,7 +20,7 @@ public class PoxOrderConfirmationMapper implements ToXmlMapper<OrderConfirmation
 	}
 
 	private OrderConfirmation map(Order order) {
-		StaticLogger.logEnter(PoxOrderConfirmationMapper.class);
+		logEnter();
 		StaticLogger.logger(PoxOrderConfirmationMapper.class).atDebug().log("Mapping orderId={}, itemCount={}", order.getOrderId(), order.getItems().size());
 
 		List<String> items = order.getItems().stream() //
@@ -37,7 +37,7 @@ public class PoxOrderConfirmationMapper implements ToXmlMapper<OrderConfirmation
 		StaticLogger.logger(PoxOrderConfirmationMapper.class).atDebug().log("Mapped OrderConfirmation: {}", confirmation);
 
 
-		StaticLogger.logExit(PoxOrderConfirmationMapper.class);
+		logExit();
 		return confirmation;
 	}
 }

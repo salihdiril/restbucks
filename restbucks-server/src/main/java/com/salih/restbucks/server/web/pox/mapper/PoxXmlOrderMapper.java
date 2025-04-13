@@ -26,14 +26,14 @@ public class PoxXmlOrderMapper implements ToDomainMapper<com.salih.restbucks.ser
 	}
 
 	private Order map(com.salih.restbucks.server.web.pox.xmlmodel.Order xmlOrder) {
-		StaticLogger.logEnter(PoxXmlOrderMapper.class);
+		logEnter();
 
 		List<Item> domainItems = xmlOrder.getItems().getItem().stream() //
 				.map(this::mapItem) //
 				.toList();
 		StaticLogger.logger(PoxXmlOrderMapper.class).atTrace().log("Extracted item names: {}", domainItems);
 
-		StaticLogger.logExit(PoxXmlOrderMapper.class);
+		logExit();
 		return new Order(UUID.randomUUID().toString(), //
 				domainItems, //
 				ConsumeLocation.valueOf(xmlOrder.getLocation().value()), //
@@ -43,7 +43,7 @@ public class PoxXmlOrderMapper implements ToDomainMapper<com.salih.restbucks.ser
 	}
 
 	private Item mapItem(com.salih.restbucks.server.web.pox.xmlmodel.Item xmlItem) {
-		StaticLogger.logEnter(PoxXmlOrderMapper.class);
+		logEnter();
 		Product xmlProduct = xmlItem.getProduct();
 		StaticLogger.logger(PoxXmlOrderMapper.class).atDebug().log("Mapping xmlItem for product: {}, quantity: {}", xmlProduct.getName(), xmlItem.getQuantity());
 
@@ -57,7 +57,7 @@ public class PoxXmlOrderMapper implements ToDomainMapper<com.salih.restbucks.ser
 				ProductType.valueOf(xmlProduct.getType().name()));
 		StaticLogger.logger(PoxXmlOrderMapper.class).atTrace().log("Created domain product: {}", product);
 
-		StaticLogger.logExit(PoxXmlOrderMapper.class);
+		logExit();
 		return new Item(product, xmlItem.getQuantity()).setAttributes(attributes);
 	}
 }
