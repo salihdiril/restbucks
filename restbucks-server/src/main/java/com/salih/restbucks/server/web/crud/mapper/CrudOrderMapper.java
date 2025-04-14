@@ -1,6 +1,8 @@
 package com.salih.restbucks.server.web.crud.mapper;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Component;
@@ -69,7 +71,10 @@ public class CrudOrderMapper implements ToDomainMapper<Order>, ToXmlMapper<Order
 		logEnter();
 		Product xmlProduct = xmlItem.getProduct();
 
-		List<Attribute> attributes = xmlItem.getAttributes().getAttribute().stream() //
+		List<Attribute> attributes = Optional.ofNullable(xmlItem.getAttributes()) //
+				.map(Attributes::getAttribute) //
+				.stream() //
+				.flatMap(Collection::stream) //
 				.map(attribute -> new Attribute(PropertyKey.valueOf(attribute.getName().name()), attribute.getValue())) //
 				.toList();
 

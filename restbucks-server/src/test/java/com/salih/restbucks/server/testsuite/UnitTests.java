@@ -6,6 +6,7 @@ import org.junit.platform.suite.api.Suite;
 
 import com.salih.restbucks.server.service.ProductCatalogTest;
 import com.salih.restbucks.server.web.crud.controller.CrudOrderControllerTest;
+import com.salih.restbucks.server.web.crud.mapper.CrudOrderMapperTest;
 import com.salih.restbucks.server.web.crud.validation.CrudXmlAttributeValidatorTest;
 import com.salih.restbucks.server.web.crud.validation.CrudXmlItemValidatorTest;
 import com.salih.restbucks.server.web.crud.validation.CrudXmlOrderValidatorTest;
@@ -40,6 +41,7 @@ import com.salih.restbucks.server.web.validation.util.XmlValidationUtilsTest;
 		CrudXmlProductValidatorTest.class, //
 		CrudXmlItemValidatorTest.class, //
 		CrudXmlOrderValidatorTest.class, //
-		CrudOrderControllerTest.class })
+		CrudOrderControllerTest.class, //
+		CrudOrderMapperTest.class })
 public class UnitTests {
 }
